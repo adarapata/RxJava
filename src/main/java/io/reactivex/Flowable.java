@@ -2491,6 +2491,13 @@ public abstract class Flowable<T> implements Publisher<T> {
         return RxJavaPlugins.onAssembly(new FlowableJust<T>(item));
     }
 
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    public static Flowable<String> imo() {
+        return RxJavaPlugins.onAssembly(new FlowableImo());
+    }
+
     /**
      * Converts two items into a Publisher that emits those items.
      * <p>
