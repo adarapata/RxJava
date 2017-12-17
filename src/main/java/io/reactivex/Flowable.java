@@ -12347,6 +12347,13 @@ public abstract class Flowable<T> implements Publisher<T> {
         return RxJavaPlugins.onAssembly(new FlowableSkip<T>(this, count));
     }
 
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    public final Flowable<T> println() {
+        return RxJavaPlugins.onAssembly(new FlowablePrintln<T>(this));
+    }
+
     /**
      * Returns a Flowable that skips values emitted by the source Publisher before a specified time window
      * elapses.
